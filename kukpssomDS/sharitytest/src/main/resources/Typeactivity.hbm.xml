@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Feb 23, 2023, 5:00:50 PM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="sharity" name="se.springboot.sharitytest.model.TypeActivity" optimistic-lock="none" table="typeactivity">
+        <id name="typeId" type="java.lang.Integer">
+            <column name="typeId"/>
+            <generator class="identity"/>
+        </id>
+        <property name="typeName" type="string">
+            <column length="30" name="typeName" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="typeOfActivities" table="typeofactivity">
+            <key>
+                <column name="typeId" not-null="true" unique="true"/>
+            </key>
+            <one-to-many class="se.springboot.sharitytest.model.TypeOfActivity"/>
+        </set>
+    </class>
+</hibernate-mapping>
