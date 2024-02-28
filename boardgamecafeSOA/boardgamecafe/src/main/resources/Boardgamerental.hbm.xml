@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Apr 5, 2023, 12:47:56 AM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="boardgame" name="project.soa.boardgame.cafe.boardgamecafe.model.BoardgameRental" optimistic-lock="none" table="boardgamerental">
+        <id name="boardgamerentalId" type="java.lang.Integer">
+            <column name="boardgamerentalId"/>
+            <generator class="identity"/>
+        </id>
+        <property name="datestart" type="date">
+            <column length="10" name="datestart" not-null="true"/>
+        </property>
+        <property name="dateend" type="date">
+            <column length="10" name="dateend" not-null="true"/>
+        </property>
+        <property name="name" type="string">
+            <column length="100" name="name" not-null="true"/>
+        </property>
+        <property name="tel" type="string">
+            <column length="10" name="tel" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="boardgamerenteds" table="boardgamerented">
+            <key>
+                <column name="boardgamerentalId" not-null="true"/>
+            </key>
+            <one-to-many class="project.soa.boardgame.cafe.boardgamecafe.model.BoardgameRented"/>
+        </set>
+    </class>
+</hibernate-mapping>

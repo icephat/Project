@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 16, 2023, 3:22:57 AM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="boardgame" name="project.soa.boardgame.cafe.boardgamecafe.model.BoardgameBought" optimistic-lock="none" table="boardgamebought">
+        <id name="boardgameboughtId" type="java.lang.Integer">
+            <column name="boardgameboughtId"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="project.soa.boardgame.cafe.boardgamecafe.model.Boardgame" fetch="select" name="boardgame">
+            <column name="boardgameId" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="project.soa.boardgame.cafe.boardgamecafe.model.BuyBoardgame" fetch="select" name="buyBoardgame">
+            <column name="buyboardgameId" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

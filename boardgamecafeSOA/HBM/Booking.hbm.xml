@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 16, 2023, 3:22:57 AM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="boardgame" name="project.soa.boardgame.cafe.boardgamecafe.model.Booking" optimistic-lock="none" table="booking">
+        <id name="bookingId" type="java.lang.Integer">
+            <column name="bookingId"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="project.soa.boardgame.cafe.boardgamecafe.model.Table" fetch="select" name="table">
+            <column name="tableId" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="project.soa.boardgame.cafe.boardgamecafe.model.User" fetch="select" name="user">
+            <column name="userId" not-null="true"/>
+        </many-to-one>
+        <property name="numberbooking" type="int">
+            <column name="numberbooking" not-null="true"/>
+        </property>
+        <property name="date" type="date">
+            <column length="10" name="date" not-null="true"/>
+        </property>
+        <property name="timeStart" type="time">
+            <column length="8" name="timeStart"/>
+        </property>
+        <property name="timeEnd" type="time">
+            <column length="8" name="timeEnd"/>
+        </property>
+        <property name="name" type="string">
+            <column length="100" name="name" not-null="true"/>
+        </property>
+        <property name="note" type="string">
+            <column length="65535" name="note" not-null="true"/>
+        </property>
+        <property name="tel" type="string">
+            <column length="10" name="tel" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="reservedGameboards" table="reservedgameboard">
+            <key>
+                <column name="bookingId" not-null="true"/>
+            </key>
+            <one-to-many class="project.soa.boardgame.cafe.boardgamecafe.model.ReservedGameboard"/>
+        </set>
+    </class>
+</hibernate-mapping>

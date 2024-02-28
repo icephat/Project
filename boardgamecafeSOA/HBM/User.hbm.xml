@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 16, 2023, 3:22:57 AM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="boardgame" name="project.soa.boardgame.cafe.boardgamecafe.model.User" optimistic-lock="none" table="user">
+        <id name="userId" type="java.lang.Integer">
+            <column name="userId"/>
+            <generator class="identity"/>
+        </id>
+        <property name="firstname" type="string">
+            <column length="100" name="firstname" not-null="true"/>
+        </property>
+        <property name="phonenumber" type="string">
+            <column length="10" name="phonenumber" not-null="true"/>
+        </property>
+        <property name="address" type="string">
+            <column length="65535" name="address" not-null="true"/>
+        </property>
+        <property name="lastname" type="string">
+            <column length="30" name="lastname" not-null="true"/>
+        </property>
+        <property name="username" type="string">
+            <column length="30" name="username" not-null="true"/>
+        </property>
+        <property name="password" type="string">
+            <column length="30" name="password" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="bookings" table="booking">
+            <key>
+                <column name="userId" not-null="true"/>
+            </key>
+            <one-to-many class="project.soa.boardgame.cafe.boardgamecafe.model.Booking"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="manuBookings" table="manubooking">
+            <key>
+                <column name="userId" not-null="true"/>
+            </key>
+            <one-to-many class="project.soa.boardgame.cafe.boardgamecafe.model.ManuBooking"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="boardgameRentals" table="boardgamerental">
+            <key>
+                <column name="userId" not-null="true"/>
+            </key>
+            <one-to-many class="project.soa.boardgame.cafe.boardgamecafe.model.BoardgameRental"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="buyBoardgames" table="buyboardgame">
+            <key>
+                <column name="userId" not-null="true"/>
+            </key>
+            <one-to-many class="project.soa.boardgame.cafe.boardgamecafe.model.BuyBoardgame"/>
+        </set>
+    </class>
+</hibernate-mapping>

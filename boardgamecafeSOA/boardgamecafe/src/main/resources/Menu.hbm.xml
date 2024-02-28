@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Apr 5, 2023, 12:47:56 AM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="boardgame" name="project.soa.boardgame.cafe.boardgamecafe.model.Menu" optimistic-lock="none" table="menu">
+        <id name="menuId" type="java.lang.Integer">
+            <column name="menuId"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="100" name="name" not-null="true"/>
+        </property>
+        <property name="price" type="float">
+            <column name="price" not-null="true" precision="12" scale="0"/>
+        </property>
+        <property name="type" type="string">
+            <column length="100" name="type" not-null="true"/>
+        </property>
+        <property name="imgPath" type="string">
+            <column length="150" name="imgPath"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="manubookings" table="manubooking">
+            <key>
+                <column name="menuId" not-null="true"/>
+            </key>
+            <one-to-many class="project.soa.boardgame.cafe.boardgamecafe.model.ManuBooking"/>
+        </set>
+    </class>
+</hibernate-mapping>
