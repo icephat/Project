@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.ApiStaff" optimistic-lock="none" table="apistaff">
+        <id name="apiStaffId" type="java.lang.Integer">
+            <column name="apiStaffID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Api" fetch="select" name="api">
+            <column name="apiID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Staff" fetch="select" name="staff">
+            <column name="staffID" not-null="true"/>
+        </many-to-one>
+        <property name="expireDate" type="date">
+            <column length="10" name="expireDate" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated May 24, 2023, 8:55:59 AM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.SurveyPoint" optimistic-lock="none" table="surveypoint">
+        <id name="surveyPointId" type="java.lang.Integer">
+            <column name="surveyPointID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Survey" fetch="select" name="survey">
+            <column name="surveyID" not-null="true"/>
+        </many-to-one>
+        <property name="pointNo" type="int">
+            <column name="pointNo" not-null="true"/>
+        </property>
+        <property name="status" type="string">
+            <column length="8" name="status" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,135 @@
+body {
+  background-color: #fff;
+  height: 100vh;
+  font-family: monospace;
+  margin: 0;
+}
+.head {
+  width: 60%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 10px;
+}
+.threeheader {
+  width: 70%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  line-height: 70px;
+}
+.threeheader a {
+  font-size: 42px;
+  color: #68a4c4;
+}
+.threeheader p {
+  font-size: 42px;
+}
+.threeheader-line {
+  height: 5px;
+  width: 200px;
+  background-color: #123649;
+  border-radius: 10px;
+}
+.back {
+  font-size: 50px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50px;
+  flex-direction: column;
+}
+.back a {
+  color: #123649;
+  margin-top: 70px;
+}
+.back img {
+  margin-top: 70px;
+}
+.container {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.list {
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  column-gap: 35px;
+}
+.item .img img {
+  height: 180px;
+  width: 100%;
+  transition: 0.5s;
+}
+.item .img {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+}
+.content {
+  height: 110px;
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.item .content {
+  background-color: #68a4c420;
+  transform: translate(0, -50px);
+  backdrop-filter: blur(50px);
+  color: #000000;
+}
+.title {
+  font-size: x-large;
+  margin: 10px;
+  width: 100%;
+}
+.item .content .des {
+  opacity: 0.7;
+}
+.item .content .price {
+  font-size: large;
+  letter-spacing: 3px;
+}
+.item .content .add {
+  background-color: #bedae8;
+  height: 50px;
+  color: #000000;
+  width: 93%;
+  border: none;
+}
+.item .content .add:hover {
+  background-color: #123649;
+  color: #ffffff;
+  width: 93%;
+  border: none;
+}
+.listPage {
+  padding: 10px;
+  text-align: center;
+  list-style: none;
+  margin-top: -40px;
+}
+.listPage li {
+  background-color: #b9b9b9bd;
+  padding: 20px;
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.listPage .active {
+  background-color: #bedae8;
+  color: #000000;
+}

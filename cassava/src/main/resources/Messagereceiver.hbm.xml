@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Messagereceiver" optimistic-lock="none" table="messagereceiver">
+        <composite-id class="org.cassava.model.MessagereceiverId" name="id">
+            <key-property name="messageId" type="int">
+                <column name="messageID"/>
+            </key-property>
+            <key-property name="receiverId" type="int">
+                <column name="receiverID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="org.cassava.model.Message" fetch="select" insert="false" name="message" update="false">
+            <column name="messageID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.User" fetch="select" insert="false" name="user" update="false">
+            <column name="receiverID" not-null="true"/>
+        </many-to-one>
+        <property name="readStatus" type="string">
+            <column length="2" name="readStatus" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

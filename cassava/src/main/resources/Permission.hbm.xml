@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Permission" optimistic-lock="none" table="permission">
+        <id name="permisisonId" type="java.lang.Integer">
+            <column name="permisisonID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Staff" fetch="select" name="staffByApproveBy">
+            <column name="approveBy"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Staff" fetch="select" name="staffByStaffId">
+            <column name="staffID" not-null="true"/>
+        </many-to-one>
+        <property name="type" type="string">
+            <column length="11" name="type" not-null="true"/>
+        </property>
+        <property name="dateInfoStart" type="date">
+            <column length="10" name="dateInfoStart" not-null="true"/>
+        </property>
+        <property name="dateInfoEnd" type="date">
+            <column length="10" name="dateInfoEnd" not-null="true"/>
+        </property>
+        <property name="dateRequest" type="timestamp">
+            <column length="19" name="dateRequest" not-null="true"/>
+        </property>
+        <property name="dateApprove" type="timestamp">
+            <column length="19" name="dateApprove"/>
+        </property>
+        <property name="dateExpire" type="timestamp">
+            <column length="19" name="dateExpire"/>
+        </property>
+        <property name="status" type="string">
+            <column length="8" name="status" not-null="true"/>
+        </property>
+        <bag fetch="select" inverse="true" lazy="true" name="permissionfiles" table="permissionfile">
+            <key>
+                <column name="permissionID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.PermissionFile"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="permissiontargetofsurveys" table="permissiontargetofsurvey">
+            <key>
+                <column name="permissionID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.PermissionTargetOfSurvey"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="permissionprovinces" table="permissionprovince">
+            <key>
+                <column name="permissionID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.PermissionProvince"/>
+        </bag>
+         <bag fetch="select" inverse="true" lazy="true" name="permissionOrganizations" table="permissionorganization">
+            <key>
+                <column name="permissionId" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.PermissionOrganization"/>
+        </bag>
+    </class>
+</hibernate-mapping>

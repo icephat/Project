@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.TargetOfSurvey" optimistic-lock="none" table="targetofsurvey">
+        <id name="targetOfSurveyId" type="java.lang.Integer">
+            <column name="targetOfSurveyID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="70" name="name" not-null="true"/>
+        </property>
+        <one-to-one class="org.cassava.model.Disease" name="disease" cascade="all"/>
+        <!-- <set fetch="select" inverse="true" lazy="true" name="permissiontargetofsurveys" table="permissiontargetofsurvey">
+            <key>
+                <column name="targetOfSurveyID" not-null="true"/>
+            </key>
+            <one-to-many class="model.Permissiontargetofsurvey"/>
+        </set>-->
+        <bag fetch="select" inverse="true" lazy="true" name="permissiontargetofsurveys" table="permissiontargetofsurvey">
+            <key>
+                <column name="targetOfSurveyID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.PermissionTargetOfSurvey"/>
+        </bag>
+        <one-to-one class="org.cassava.model.PestPhaseSurvey" name="pestphasesurvey" cascade="all"/>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="surveytargets" table="surveytarget">
+            <key>
+                <column name="targetOfSurveyID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Surveytarget"/>
+        </set>
+         -->
+         <bag fetch="select" inverse="true" lazy="true" name="surveytargets" table="surveytarget">
+            <key>
+                <column name="targetOfSurveyID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.SurveyTarget"/>
+        </bag>
+        <one-to-one class="org.cassava.model.NaturalEnemy" name="naturalenemy" cascade="all"/>
+    </class>
+</hibernate-mapping>

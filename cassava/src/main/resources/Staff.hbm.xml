@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Staff" optimistic-lock="none" table="staff">
+        <id name="staffId" type="int">
+            <column name="staffID"/>
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+        <many-to-one class="org.cassava.model.Organization" fetch="select" name="organization">
+            <column name="organizationID"/>
+        </many-to-one>
+        <one-to-one class="org.cassava.model.User" constrained="true" name="user"/>
+        <property name="position" type="string">
+            <column length="30" name="position" not-null="true"/>
+        </property>
+        <property name="division" type="string">
+            <column length="50" name="division" not-null="true"/>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="requestsForApproveBy" table="request">
+            <key>
+                <column name="approveBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="requestsForApproveByDpphato" table="request">
+            <key>
+                <column name="approveByDPPhato"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="apistaffs" table="apistaff">
+            <key>
+                <column name="staffID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Apistaff"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="requestsForStaffId" table="request">
+            <key>
+                <column name="staffID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="requestsForApproveByDae" table="request">
+            <key>
+                <column name="approveByDAE"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="requestsForApproveByDa" table="request">
+            <key>
+                <column name="approveByDA"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="permissionsForApproveBy" table="permission">
+            <key>
+                <column name="approveBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.Permission"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="permissionsForStaffId" table="permission">
+            <key>
+                <column name="staffID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Permission"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="tokens" table="token">
+            <key>
+                <column name="staffID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Token"/>
+        </set>
+         -->
+         <bag fetch="select" inverse="true" lazy="true" name="requestsForApproveBy" table="request">
+            <key>
+                <column name="approveBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="requestsForApproveByDpphato" table="request">
+            <key>
+                <column name="approveByDPPhato"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="apistaffs" table="apistaff">
+            <key>
+                <column name="staffID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.ApiStaff"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="requestsForStaffId" table="request">
+            <key>
+                <column name="staffID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="requestsForApproveByDae" table="request">
+            <key>
+                <column name="approveByDAE"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="requestsForApproveByDa" table="request">
+            <key>
+                <column name="approveByDA"/>
+            </key>
+            <one-to-many class="org.cassava.model.Request"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="permissionsForApproveBy" table="permission">
+            <key>
+                <column name="approveBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.Permission"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="permissionsForStaffId" table="permission">
+            <key>
+                <column name="staffID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Permission"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="tokens" table="token">
+            <key>
+                <column name="staffID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Token"/>
+        </bag>
+    </class>
+</hibernate-mapping>

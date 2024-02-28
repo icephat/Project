@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.PathogenType" optimistic-lock="none" table="pathogentype">
+        <id name="pathogenTypeId" type="java.lang.Integer">
+            <column name="pathogenTypeID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="30" name="name" not-null="true"/>
+        </property>
+        <!-- <set fetch="select" inverse="true" lazy="true" name="pathogens" table="pathogen">
+            <key>
+                <column name="pathogenTypeID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Pathogen"/>
+        </set> -->
+        <bag fetch="select" inverse="true" lazy="true" name="pathogens" table="pathogen">
+            <key>
+                <column name="pathogenTypeID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Pathogen"/>
+        </bag>
+    </class>
+</hibernate-mapping>

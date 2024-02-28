@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="cassava" name="org.cassava.model.Survey"
+		optimistic-lock="none" table="survey">
+		<id name="surveyId" type="java.lang.Integer">
+			<column name="surveyID" />
+			<generator class="identity" />
+		</id>
+		<many-to-one class="org.cassava.model.Planting"
+			fetch="select" name="planting">
+			<column name="plantingID" not-null="true" />
+		</many-to-one>
+		<many-to-one class="org.cassava.model.User" fetch="select"
+			name="userByLastUpdateBy">
+			<column name="lastUpdateBy" />
+		</many-to-one>
+		<many-to-one class="org.cassava.model.User" fetch="select"
+			name="userByCreateBy">
+			<column name="createBy" />
+		</many-to-one>
+		<many-to-one class="org.cassava.model.User" fetch="select"
+			name="userByImgOwner">
+			<column name="imgOwner" />
+		</many-to-one>
+		<many-to-one class="org.cassava.model.User" fetch="select"
+			name="userByImgPhotographer">
+			<column name="imgPhotographer" />
+		</many-to-one>
+		<property name="date" type="date">
+			<column length="10" name="date" not-null="true" />
+		</property>
+		<property name="besidePlant" type="string">
+			<column length="50" name="besidePlant" />
+		</property>
+		<property name="weed" type="string">
+			<column length="30" name="weed" />
+		</property>
+		<property name="temperature" type="float">
+			<column name="temperature" not-null="true" precision="12"
+				scale="0" />
+		</property>
+		<property name="humidity" type="float">
+			<column name="humidity" not-null="true" precision="12"
+				scale="0" />
+		</property>
+		<property name="rainType" type="string">
+			<column length="10" name="rainType" not-null="true" />
+		</property>
+		<property name="sunlightType" type="string">
+			<column length="15" name="sunlightType" not-null="true" />
+		</property>
+		<property name="dewType" type="string">
+			<column length="15" name="dewType" not-null="true" />
+		</property>
+		<property name="soilType" type="string">
+			<column length="50" name="soilType" not-null="true" />
+		</property>
+		<property name="percentDamageFromHerbicide" type="string">
+			<column length="3" name="percentDamageFromHerbicide" />
+		</property>
+		<property name="surveyPatternDisease" type="string">
+			<column length="48" name="surveyPatternDisease"
+				not-null="true" default="ระดับ0-5" />
+		</property>
+		<property name="surveyPatternPest" type="string">
+			<column length="17" name="surveyPatternPest" not-null="true"
+				default="เปอร์เซ็นต์" />
+		</property>
+		<property name="surveyPatternNaturalEnemy" type="string">
+			<column length="17" name="surveyPatternNaturalEnemy"
+				not-null="true" />
+		</property>
+		<property name="numPointSurvey" type="int">
+			<column name="numPointSurvey" not-null="true" default="5" />
+		</property>
+		<property name="numPlantInPoint" type="int">
+			<column name="numPlantInPoint" not-null="true" default="20" />
+		</property>
+		<property name="imgOwnerOther" type="string">
+			<column length="100" name="imgOwnerOther" />
+		</property>
+		<property name="imgPhotographerOther" type="string">
+			<column length="100" name="imgPhotographerOther" />
+		</property>
+		<property name="note" type="string">
+			<column name="note" not-null="true" />
+		</property>
+		<property name="createDate" type="timestamp">
+			<column length="19" name="createDate" not-null="true" />
+		</property>
+		<property name="lastUpdateDate" type="timestamp">
+			<column length="19" name="lastUpdateDate" />
+		</property>
+		<property name="status" type="string">
+            <column length="8" name="status" not-null="true"/>
+        </property>
+		<!-- <set fetch="select" inverse="true" lazy="true" name="imgherbicidedamages" 
+			table="imgherbicidedamage"> <key> <column name="surveyID" not-null="true"/> 
+			</key> <one-to-many class="org.cassava.model.Imgherbicidedamage"/> </set> 
+			<set fetch="select" inverse="true" lazy="true" name="requestdetails" table="requestdetail"> 
+			<key> <column name="surveyID" not-null="true"/> </key> <one-to-many class="org.cassava.model.Requestdetail"/> 
+			</set> <set fetch="select" inverse="true" lazy="true" name="surveytargets" 
+			table="surveytarget"> <key> <column name="surveyID" not-null="true"/> </key> 
+			<one-to-many class="org.cassava.model.Surveytarget"/> </set> -->
+		<bag fetch="select" inverse="true" lazy="true"
+			name="imgherbicidedamages" table="imgherbicidedamage">
+			<key>
+				<column name="surveyID" not-null="true" />
+			</key>
+			<one-to-many class="org.cassava.model.ImgHerbicideDamage" />
+		</bag>
+		<bag fetch="select" inverse="true" lazy="true"
+			name="requestdetails" table="requestdetail">
+			<key>
+				<column name="surveyID" not-null="true" />
+			</key>
+			<one-to-many class="org.cassava.model.RequestDetail" />
+		</bag>
+		<bag fetch="select" inverse="true" lazy="true"
+			name="surveytargets" table="surveytarget">
+			<key>
+				<column name="surveyID" not-null="true" />
+			</key>
+			<one-to-many class="org.cassava.model.SurveyTarget" />
+		</bag>
+		<bag fetch="select" inverse="true" lazy="true" name="surveyPoints"
+			table="surveypoint">
+			<key>
+				<column name="surveyID" not-null="true" />
+			</key>
+			<one-to-many class="org.cassava.model.SurveyPoint" />
+		</bag>
+	</class>
+</hibernate-mapping>

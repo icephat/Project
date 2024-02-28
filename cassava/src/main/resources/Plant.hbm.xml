@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Plant" optimistic-lock="none" table="plant">
+        <id name="plantId" type="java.lang.Integer">
+            <column name="plantID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="30" name="name" not-null="true"/>
+        </property>
+        <property name="harvestDayStart" type="int">
+            <column name="harvestDayStart" not-null="true"/>
+        </property>
+        <property name="harvestDayEnd" type="int">
+            <column name="harvestDayEnd" not-null="true"/>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="varieties" table="variety">
+            <key>
+                <column name="plantID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Variety"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="diseases" table="disease">
+            <key>
+                <column name="plantID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Disease"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="plantphases" table="plantphase">
+            <key>
+                <column name="plantID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Plantphase"/>
+        </set>
+         -->
+        <bag fetch="select" inverse="true" lazy="true" name="varieties" table="variety">
+            <key>
+                <column name="plantID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Variety"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="diseases" table="disease">
+            <key>
+                <column name="plantID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Disease"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="plantphases" table="plantphase">
+            <key>
+                <column name="plantID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.PlantPhase"/>
+        </bag>
+    </class>
+</hibernate-mapping>

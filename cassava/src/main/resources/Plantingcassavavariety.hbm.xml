@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.PlantingCassavaVariety" optimistic-lock="none" table="plantingcassavavariety">
+        <composite-id class="org.cassava.model.PlantingCassavaVarietyId" name="id">
+            <key-property name="plantingId" type="int">
+                <column name="plantingID"/>
+            </key-property>
+            <key-property name="varietyId" type="int">
+                <column name="varietyID"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="org.cassava.model.Planting" fetch="select" insert="false" name="planting" update="false">
+            <column name="plantingID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Variety" fetch="select" insert="false" name="variety" update="false">
+            <column name="varietyID" not-null="true" unique="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

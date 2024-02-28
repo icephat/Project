@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Field" optimistic-lock="none" table="field">
+        <id name="fieldId" type="java.lang.Integer">
+            <column name="fieldID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Organization" fetch="select" name="organization">
+            <column name="organizationID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Subdistrict" fetch="select" name="subdistrict">
+            <column name="subdistrictID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.User" fetch="select" name="userByLastUpdateBy">
+            <column name="lastUpdateBy"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.User" fetch="select" name="userByCreateBy">
+            <column name="createBy" not-null="true"/>
+        </many-to-one>
+        <property name="code" type="string">
+            <column length="50" name="code"/>
+        </property>
+        <property name="name" type="string">
+            <column length="100" name="name"/>
+        </property>
+        <property name="address" type="string">
+            <column length="100" name="address" not-null="true"/>
+        </property>
+        <property name="road" type="string">
+            <column length="30" name="road"/>
+        </property>
+        <property name="moo" type="string">
+            <column length="10" name="moo"/>
+        </property>
+        <property name="landmark" type="string">
+            <column length="100" name="landmark"/>
+        </property>
+        <property name="latitude" type="java.lang.Float">
+            <column name="latitude" precision="12" scale="0"/>
+            <!-- <column name="latitude" not-null="true" precision="12" scale="0"/> -->
+        </property>
+        <property name="longitude" type="java.lang.Float">
+            <column name="longitude" precision="12" scale="0"/>
+            <!-- <column name="longitude" not-null="true" precision="12" scale="0"/> -->
+        </property>
+        <property name="metresAboveSeaLv" type="java.lang.Float">
+            <column name="metresAboveSeaLv" precision="12" scale="0"/>
+        </property>
+        <property name="size" type="float">
+            <column name="size" not-null="true" precision="12" scale="0"/>
+        </property>
+        <property name="imgPath" type="string">
+            <column length="150" name="imgPath"/>
+        </property>
+        <property name="status" type="string">
+            <column length="7" name="status" not-null="true"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column length="19" name="createDate" not-null="true"/>
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column length="19" name="lastUpdateDate"/>
+        </property>
+        <!-- <set fetch="select" inverse="true" lazy="true" name="userinfields" table="userinfield">
+            <key>
+                <column name="fieldID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Userinfield"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="plantings" table="planting">
+            <key>
+                <column name="fieldID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </set> -->
+        <bag fetch="select" inverse="true" lazy="true" name="userinfields" table="userinfield">
+            <key>
+                <column name="fieldID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.UserInField"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="plantings" table="planting">
+            <key>
+                <column name="fieldID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </bag>
+    </class>
+</hibernate-mapping>

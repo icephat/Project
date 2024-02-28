@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cassava</property>
+        <property name="hibernate.connection.username">root</property>
+     
+        <property name="hibernate.connection.password"></property>
+   
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		
+
+		<mapping resource="Api.hbm.xml"/>
+		<mapping resource="Apidetail.hbm.xml"/>
+		<mapping resource="Apistaff.hbm.xml"/>
+		<mapping resource="Disease.hbm.xml"/>
+		<mapping resource="District.hbm.xml"/>
+		<mapping resource="Farmer.hbm.xml"/>
+		<mapping resource="Field.hbm.xml"/>
+		<mapping resource="Herbicide.hbm.xml"/>
+		<mapping resource="Imgdisease.hbm.xml"/>
+		<mapping resource="Imgherbicidedamage.hbm.xml"/>
+		<mapping resource="Imgnaturalenemy.hbm.xml"/>
+		<mapping resource="Imgpest.hbm.xml"/>
+		<mapping resource="Imgsurveytargetpoint.hbm.xml"/>
+		<mapping resource="Imgvariety.hbm.xml"/>
+		<mapping resource="Message.hbm.xml"/>
+		<mapping resource="Messagereceiver.hbm.xml"/>
+		<mapping resource="Naturalenemy.hbm.xml"/>
+		<mapping resource="Organization.hbm.xml"/>
+		<mapping resource="Pathogen.hbm.xml"/>
+		<mapping resource="Pathogentype.hbm.xml"/>
+		<mapping resource="Permission.hbm.xml"/>
+		<mapping resource="Permissionfile.hbm.xml"/>
+		<mapping resource="Permissionorganization.hbm.xml"/>
+		<mapping resource="Permissionprovince.hbm.xml"/>
+		<mapping resource="Permissiontargetofsurvey.hbm.xml"/>
+		<mapping resource="Pest.hbm.xml"/>
+		<mapping resource="Pestmanagement.hbm.xml"/>
+		<mapping resource="Pestphase.hbm.xml"/>
+		<mapping resource="Pestphasesurvey.hbm.xml"/>
+		<mapping resource="Plant.hbm.xml"/>
+		<mapping resource="Planting.hbm.xml"/>
+		<mapping resource="Plantingcassavavariety.hbm.xml"/>
+		<mapping resource="Plantphase.hbm.xml"/>
+		<mapping resource="Province.hbm.xml"/>
+		<mapping resource="Region.hbm.xml"/>
+		<mapping resource="Registercode.hbm.xml"/>
+		<mapping resource="Request.hbm.xml"/>
+		<mapping resource="Requestdetail.hbm.xml"/>
+		<mapping resource="Requestfile.hbm.xml"/>
+		<mapping resource="Role.hbm.xml"/>
+		<mapping resource="Staff.hbm.xml"/>
+		<mapping resource="Subdistrict.hbm.xml"/>
+		<mapping resource="Survey.hbm.xml"/>
+		<mapping resource="Surveypoint.hbm.xml"/>
+		<mapping resource="Surveytarget.hbm.xml"/>
+		<mapping resource="Surveytargetpoint.hbm.xml"/>
+		<mapping resource="Targetofsurvey.hbm.xml"/>
+		<mapping resource="Token.hbm.xml"/>
+		<mapping resource="User.hbm.xml"/>
+		<mapping resource="Userinfield.hbm.xml"/>
+		<mapping resource="Variety.hbm.xml"/>
+
+
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.NaturalEnemy" optimistic-lock="none" table="naturalenemy">
+        <id name="naturalEnemyId" type="int">
+            <column name="naturalEnemyID"/>
+            <generator class="foreign">
+                <param name="property">targetofsurvey</param>
+            </generator>
+        </id>
+        <one-to-one class="org.cassava.model.TargetOfSurvey" constrained="true" name="targetofsurvey"/>
+        <property name="commonName" type="string">
+            <column length="50" name="commonName" not-null="true"/>
+        </property>
+        <property name="scientificName" type="string">
+            <column length="70" name="scientificName" not-null="true"/>
+        </property>
+        <property name="type" type="string">
+            <column length="8" name="type"/>
+        </property>
+        <property name="controlMethod" type="string">
+            <column name="controlMethod"/>
+        </property>
+        <property name="releaseRate" type="string">
+            <column name="releaseRate"/>
+        </property>
+        <property name="source" type="string">
+            <column name="source" not-null="true"/>
+        </property>
+        <!-- <set fetch="select" inverse="true" lazy="true" name="imgnaturalenemies" table="imgnaturalenemy">
+            <key>
+                <column name="naturalEnemyID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Imgnaturalenemy"/>
+        </set> -->
+         <bag fetch="select" inverse="true" lazy="true" name="imgnaturalenemies" table="imgnaturalenemy">
+            <key>
+                <column name="naturalEnemyID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.ImgNaturalEnemy"/>
+        </bag>
+    </class>
+</hibernate-mapping>

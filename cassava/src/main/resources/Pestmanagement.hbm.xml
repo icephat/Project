@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.PestManagement" optimistic-lock="none" table="pestmanagement">
+        <id name="pestManagementId" type="java.lang.Integer">
+            <column name="pestManagementID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Pest" fetch="select" name="pest">
+            <column name="pestID" not-null="true"/>
+        </many-to-one>
+        <property name="pesticideName" type="string">
+            <column length="30" name="pesticideName" not-null="true"/>
+        </property>
+        <property name="pesticideNameEng" type="string">
+            <column length="30" name="pesticideNameEng" not-null="true"/>
+        </property>
+        <property name="percentApi" type="string">
+            <column length="20" name="percentAPI" not-null="true"/>
+        </property>
+        <property name="pesticideMechanism" type="string">
+            <column length="20" name="pesticideMechanism" not-null="true"/>
+        </property>
+        <property name="toxicityLevel" type="string">
+            <column length="30" name="toxicityLevel" not-null="true"/>
+        </property>
+        <property name="mixingRatio" type="string">
+            <column length="30" name="mixingRatio" not-null="true"/>
+        </property>
+        <property name="instruction" type="string">
+            <column length="15" name="instruction" not-null="true"/>
+        </property>
+        <property name="instructionDetail" type="string">
+            <column length="65535" name="instructionDetail" not-null="true"/>
+        </property>
+        <property name="note" type="string">
+            <column length="65535" name="note" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

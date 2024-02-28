@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Farmer" optimistic-lock="none" table="farmer">
+        <id name="farmerId" type="int">
+            <column name="farmerID"/>
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+        <many-to-one class="org.cassava.model.Subdistrict" fetch="select" name="subdistrict">
+            <column name="subdistrictID"/>
+        </many-to-one>
+        <one-to-one class="org.cassava.model.User" constrained="true" name="user"/>
+        <property name="idcard" type="string">
+            <column length="13" name="IDcard" unique="true"/>
+        </property>
+        <property name="address" type="string">
+            <column length="100" name="address" not-null="true"/>
+        </property>
+        <property name="pdpastatus" type="string">
+            <column length="4" name="PDPAStatus" not-null="true"/>
+        </property>
+        <property name="pdpavalidDate" type="date">
+            <column length="10" name="PDPAValidDate"/>
+        </property>
+        <property name="pdpafilePath" type="string">
+            <column length="150" name="PDPAFilePath"/>
+        </property>
+        <!-- <set fetch="select" inverse="false" lazy="true" name="organizations" table="farmerorganization">
+            <key>
+                <column name="farmerID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.Organization">
+                <column name="organizationID" not-null="true"/>
+            </many-to-many>
+        </set>
+         -->
+        <bag fetch="select" inverse="false" lazy="true" name="organizations" table="farmerorganization">
+            <key>
+                <column name="farmerID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.Organization">
+                <column name="organizationID" not-null="true"/>
+            </many-to-many>
+        </bag>
+    </class>
+</hibernate-mapping>

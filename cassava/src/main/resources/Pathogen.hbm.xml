@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Pathogen" optimistic-lock="none" table="pathogen">
+        <id name="pathogenId" type="java.lang.Integer">
+            <column name="pathogenID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.PathogenType" fetch="select" name="pathogentype">
+            <column name="pathogenTypeID" not-null="true"/>
+        </many-to-one>
+        <property name="scientificName" type="string">
+            <column length="70" name="scientificName" not-null="true"/>
+        </property>
+        <!-- <set fetch="select" inverse="true" lazy="true" name="diseases" table="diseasepathogen">
+            <key>
+                <column name="pathogenID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.Disease">
+                <column name="diseaseID" not-null="true"/>
+            </many-to-many>
+        </set>  -->
+        <bag fetch="select" inverse="true" lazy="true" name="diseases" table="diseasepathogen">
+            <key>
+                <column name="pathogenID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.Disease">
+                <column name="diseaseID" not-null="true"/>
+            </many-to-many>
+        </bag>
+    </class>
+</hibernate-mapping>

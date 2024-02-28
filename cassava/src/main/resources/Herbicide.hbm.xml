@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Herbicide" optimistic-lock="none" table="herbicide">
+        <id name="herbicideId" type="java.lang.Integer">
+            <column name="herbicideID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="50" name="name" not-null="true"/>
+        </property>
+        <!-- <set fetch="select" inverse="true" lazy="true" name="plantingsForWeedingChemical2" table="planting">
+            <key>
+                <column name="weedingChemical2"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="plantingsForWeedingChemical1" table="planting">
+            <key>
+                <column name="weedingChemical1"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="plantingsForWeedingChemical3" table="planting">
+            <key>
+                <column name="weedingChemical3"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </set> -->
+        <bag fetch="select" inverse="true" lazy="true" name="plantingsForWeedingChemical2" table="planting">
+            <key>
+                <column name="weedingChemical2"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="plantingsForWeedingChemical1" table="planting">
+            <key>
+                <column name="weedingChemical1"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="plantingsForWeedingChemical3" table="planting">
+            <key>
+                <column name="weedingChemical3"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </bag>
+    </class>
+</hibernate-mapping>

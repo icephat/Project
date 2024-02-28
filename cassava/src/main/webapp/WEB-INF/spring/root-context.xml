@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-2.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.6.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/data/jpa
+  		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+   
+	 <context:annotation-config />
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+     <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
+
+
+
+	 <context:property-placeholder location="classpath:application.properties"/>
+
+	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${db.driver}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+   </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="org.cassava.model"/>
+       <!-- <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/> -->
+       <property name="jpaVendorAdapter">
+        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+    </property>
+	<property name="mappingResources">
+      <list>
+      	<value>Api.hbm.xml</value>
+      	<value>Apidetail.hbm.xml</value>
+      	<value>Apistaff.hbm.xml</value>
+        <value>Disease.hbm.xml</value>
+		<value>District.hbm.xml</value>
+		<value>Farmer.hbm.xml</value>
+		<value>Field.hbm.xml</value>
+		<value>Herbicide.hbm.xml</value>
+		<value>Imgdisease.hbm.xml</value>
+		<value>Imgherbicidedamage.hbm.xml</value>
+		<value>Imgnaturalenemy.hbm.xml</value>
+		<value>Imgpest.hbm.xml</value>
+		<value>Imgsurveytargetpoint.hbm.xml</value>
+		<value>Imgvariety.hbm.xml</value>
+		<value>Message.hbm.xml</value>
+		<value>Messagereceiver.hbm.xml</value>
+		<value>Naturalenemy.hbm.xml</value>
+		<value>Organization.hbm.xml</value>
+		<value>Pathogen.hbm.xml</value>
+		<value>Pathogentype.hbm.xml</value>
+		<value>Permission.hbm.xml</value>
+		<value>Permissionfile.hbm.xml</value>
+		<value>Permissionorganization.hbm.xml</value>
+		<value>Permissionprovince.hbm.xml</value>
+		<value>Permissiontargetofsurvey.hbm.xml</value>
+		<value>Pest.hbm.xml</value>
+		<value>Pestmanagement.hbm.xml</value>
+		<value>Pestphase.hbm.xml</value>
+		<value>Pestphasesurvey.hbm.xml</value>
+		<value>Plant.hbm.xml</value>
+		<value>Planting.hbm.xml</value>
+		<value>Plantingcassavavariety.hbm.xml</value>
+		<value>Plantphase.hbm.xml</value>
+		<value>Province.hbm.xml</value>
+		<value>Refreshtoken.hbm.xml</value>
+		<value>Region.hbm.xml</value>
+		<value>Registercode.hbm.xml</value>
+		<value>Request.hbm.xml</value>
+		<value>Requestdetail.hbm.xml</value>
+		<value>Requestfile.hbm.xml</value>
+		<value>Role.hbm.xml</value>
+		<value>Staff.hbm.xml</value>
+		<value>Subdistrict.hbm.xml</value>
+		<value>Survey.hbm.xml</value>
+		<value>Surveypoint.hbm.xml</value>
+		<value>Surveytarget.hbm.xml</value>
+		<value>Surveytargetpoint.hbm.xml</value>
+		<value>Targetofsurvey.hbm.xml</value>
+		<value>Token.hbm.xml</value>
+		<value>User.hbm.xml</value>
+		<value>Userinfield.hbm.xml</value>
+		<value>Variety.hbm.xml</value>
+      </list>
+    </property>
+    <property name="jpaProperties">
+        <props>
+           <!-- <prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
+           <prop key="hibernate.current_session_context_class">thread</prop>
+		   <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+		   <prop key="hibernate.show_sql">false</prop>
+		   <prop key="hibernate.jdbc.batch_size">100</prop>
+           <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+        </props>
+    </property>
+    </bean>
+	
+	<jpa:repositories base-package="org.cassava.repository" entity-manager-factory-ref="sessionFactory"/>
+ 
+ 
+    
+   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <property name="entityManagerFactory" ref="sessionFactory" />
+  </bean>
+
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<security:global-method-security pre-post-annotations="enabled" proxy-target-class="true" authentication-manager-ref="authenticationManager">
+		<!--you could also wire in the expression handler up at the layer of the http filters. See https://jira.springsource.org/browse/SEC-1452 -->
+	</security:global-method-security>
+
+<bean id="persistenceExceptionTranslationPostProcessor" class=
+  "org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+<bean id="activeUserStore" class=
+  "org.cassava.security.ActiveUserStore" />
+
+ <!-- <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+  <context:component-scan base-package="syngenta.der" />
+-->		
+</beans>

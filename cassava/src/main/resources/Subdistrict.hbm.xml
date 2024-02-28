@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Subdistrict" optimistic-lock="none" table="subdistrict">
+        <id name="subdistrictId" type="java.lang.Integer">
+            <column name="subdistrictID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.District" fetch="select" name="district">
+            <column name="districtID" not-null="true"/>
+        </many-to-one>
+        <property name="name" type="string">
+            <column length="30" name="name" not-null="true"/>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="fields" table="field">
+            <key>
+                <column name="subdistrictID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Field"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="farmers" table="farmer">
+            <key>
+                <column name="subdistrictID"/>
+            </key>
+            <one-to-many class="org.cassava.model.Farmer"/>
+        </set>
+         -->
+        <bag fetch="select" inverse="true" lazy="true" name="fields" table="field">
+            <key>
+                <column name="subdistrictID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Field"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="farmers" table="farmer">
+            <key>
+                <column name="subdistrictID"/>
+            </key>
+            <one-to-many class="org.cassava.model.Farmer"/>
+        </bag>
+    </class>
+</hibernate-mapping>

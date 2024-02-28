@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Role" optimistic-lock="none" table="role">
+        <id name="roleId" type="java.lang.Integer">
+            <column name="roleID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="nameEng" type="string">
+            <column length="30" name="nameEng" not-null="true"/>
+        </property>
+        <property name="nameTh" type="string">
+            <column length="30" name="nameTH" not-null="true"/>
+        </property>
+        <property name="userDefine" type="string">
+            <column length="2" name="userDefine" not-null="true"/>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="users" table="userrole">
+            <key>
+                <column name="roleID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.User">
+                <column name="userID" not-null="true"/>
+            </many-to-many>
+        </set>
+         -->
+        <bag fetch="select" inverse="true" lazy="true" name="users" table="userrole">
+            <key>
+                <column name="roleID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.User">
+                <column name="userID" not-null="true"/>
+            </many-to-many>
+        </bag>
+    </class>
+</hibernate-mapping>

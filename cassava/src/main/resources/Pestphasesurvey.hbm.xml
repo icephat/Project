@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.PestPhaseSurvey" optimistic-lock="none" table="pestphasesurvey">
+        <id name="pestPhaseSurveyId" type="int">
+            <column name="pestPhaseSurveyID"/>
+            <generator class="foreign">
+                <param name="property">targetofsurvey</param>
+            </generator>
+        </id>
+        <many-to-one class="org.cassava.model.Pest" fetch="select" name="pest">
+            <column name="pestID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.PestPhase" fetch="select" name="pestphase">
+            <column name="pestPhaseID" not-null="true"/>
+        </many-to-one>
+        <one-to-one class="org.cassava.model.TargetOfSurvey" constrained="true" name="targetofsurvey"/>
+    </class>
+</hibernate-mapping>

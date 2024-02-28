@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Request" optimistic-lock="none" table="request">
+        <id name="requestId" type="java.lang.Integer">
+            <column name="requestID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Staff" fetch="select" name="staffByApproveBy">
+            <column name="approveBy"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Staff" fetch="select" name="staffByApproveByDpphato">
+            <column name="approveByDPPhato"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Staff" fetch="select" name="staffByStaffId">
+            <column name="staffID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Staff" fetch="select" name="staffByApproveByDae">
+            <column name="approveByDAE"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Staff" fetch="select" name="staffByApproveByDa">
+            <column name="approveByDA"/>
+        </many-to-one>
+        <property name="type" type="string">
+            <column length="15" name="type" not-null="true"/>
+        </property>
+        <property name="dateRequest" type="timestamp">
+            <column length="19" name="dateRequest" not-null="true"/>
+        </property>
+        <property name="requestNote" type="string">
+            <column name="requestNote"/>
+        </property>
+        <property name="status" type="string">
+            <column length="8" name="status" not-null="true"/>
+        </property>
+        <property name="dateApprove" type="timestamp">
+            <column length="19" name="dateApprove"/>
+        </property>
+        <property name="dateExpire" type="date">
+            <column length="10" name="dateExpire"/>
+        </property>
+        <property name="statusDae" type="string">
+            <column length="8" name="statusDAE">
+                <comment>???????????????????</comment>
+            </column>
+        </property>
+        <property name="statusDa" type="string">
+            <column length="8" name="statusDA">
+                <comment>???????????????</comment>
+            </column>
+        </property>
+        <property name="statusDppatho" type="string">
+            <column length="8" name="statusDPPatho">
+                <comment>????????????? ??.</comment>
+            </column>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="requestfiles" table="requestfile">
+            <key>
+                <column name="requestID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Requestfile"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="requestdetails" table="requestdetail">
+            <key>
+                <column name="requestID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Requestdetail"/>
+        </set>
+         -->
+         <bag fetch="select" inverse="true" lazy="true" name="requestfiles" table="requestfile">
+            <key>
+                <column name="requestID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.RequestFile"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="requestdetails" table="requestdetail">
+            <key>
+                <column name="requestID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.RequestDetail"/>
+        </bag>
+    </class>
+</hibernate-mapping>

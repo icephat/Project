@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated May 23, 2023, 10:56:11 PM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Region" optimistic-lock="none" table="region">
+        <id name="regionId" type="java.lang.Integer">
+            <column name="regionID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="30" name="name" not-null="true"/>
+        </property>
+        <property name="nameEng" type="string">
+            <column length="30" name="nameEng" not-null="true"/>
+        </property>
+        <!--  <set fetch="select" inverse="true" lazy="true" name="provinces" table="province">
+            <key>
+                <column name="regionID"/>
+            </key>
+            <one-to-many class="org.cassava.model.Province"/>
+        </set> -->
+        
+        <bag fetch="select" inverse="true" lazy="true" name="provinces" table="province">
+            <key>
+                <column name="regionID"/>
+            </key>
+            <one-to-many class="org.cassava.model.Province"/>
+        </bag>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated May 23, 2023, 10:56:11 PM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.PermissionTargetOfSurvey" optimistic-lock="none" table="permissiontargetofsurvey">
+        <id name="permissionTargetOfSurveyId" type="java.lang.Integer">
+            <column name="permissionTargetOfSurveyID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Permission" fetch="select" name="permission">
+            <column name="permissionID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.TargetOfSurvey" fetch="select" name="targetofsurvey">
+            <column name="targetOfSurveyID" not-null="true"/>
+        </many-to-one>
+        <property name="type" type="string">
+            <column length="4" name="type" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

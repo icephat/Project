@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Province" optimistic-lock="none" table="province">
+        <id name="provinceId" type="java.lang.Integer">
+            <column name="provinceID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Region" fetch="select" name="region">
+            <column name="regionID"/>
+        </many-to-one>
+        <property name="name" type="string">
+            <column length="30" name="name" not-null="true"/>
+        </property>
+        <property name="nameEng" type="string">
+            <column length="40" name="nameEng"/>
+        </property>
+        <property name="code" type="string">
+            <column length="10" name="code"/>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="districts" table="district">
+            <key>
+                <column name="provinceID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.District"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="permissionprovinces" table="permissionprovince">
+            <key>
+                <column name="provinceID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Permissionprovince"/>
+        </set>
+         -->
+         <bag fetch="select" inverse="true" lazy="true" name="districts" table="district">
+            <key>
+                <column name="provinceID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.District"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="permissionprovinces" table="permissionprovince">
+            <key>
+                <column name="provinceID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.PermissionProvince"/>
+        </bag>
+    </class>
+</hibernate-mapping>

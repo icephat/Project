@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Planting" optimistic-lock="none" table="planting">
+        <id name="plantingId" type="java.lang.Integer">
+            <column name="plantingID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Field" fetch="select" name="field">
+            <column name="fieldID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Herbicide" fetch="select" name="herbicideByWeedingChemical2">
+            <column name="weedingChemical2"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Herbicide" fetch="select" name="herbicideByWeedingChemical1">
+            <column name="weedingChemical1"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Herbicide" fetch="select" name="herbicideByWeedingChemical3">
+            <column name="weedingChemical3"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.User" fetch="select" name="userByCreateBy">
+            <column name="createBy" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.User" fetch="select" name="userByLastUpdateBy">
+            <column name="lastUpdateBy"/>
+        </many-to-one>
+        <property name="code" type="string">
+            <column length="25" name="code"/>
+        </property>
+        <property name="name" type="string">
+            <column length="60" name="name"/>
+        </property>
+        <property name="size" type="java.lang.Float">
+            <column name="size" precision="12" scale="0"/>
+        </property>
+        <property name="previousPlant" type="string">
+            <column length="12" name="previousPlant" not-null="true"/>
+        </property>
+        <property name="previousPlantOther" type="string">
+            <column length="30" name="previousPlantOther"/>
+        </property>
+        <property name="besidePlant" type="string">
+            <column length="12" name="besidePlant" not-null="true"/>
+        </property>
+        <property name="besidePlantOther" type="string">
+            <column length="30" name="besidePlantOther"/>
+        </property>
+        <property name="primaryVarietyOther" type="string">
+            <column length="30" name="primaryVarietyOther"/>
+        </property>
+        <property name="primaryPlantPlantingDate" type="date">
+            <column length="10" name="primaryPlantPlantingDate" not-null="true"/>
+        </property>
+        <property name="primaryPlantHarvestDate" type="date">
+            <column length="10" name="primaryPlantHarvestDate" not-null="true"/>
+        </property>
+        <property name="secondaryPlantType" type="string">
+            <column length="20" name="secondaryPlantType"/>
+        </property>
+        <property name="secondaryPlantVariety" type="string">
+            <column length="30" name="secondaryPlantVariety"/>
+        </property>
+        <property name="secondaryPlantPlantingDate" type="date">
+            <column length="10" name="secondaryPlantPlantingDate"/>
+        </property>
+        <property name="secondaryPlantHarvestDate" type="date">
+            <column length="10" name="secondaryPlantHarvestDate"/>
+        </property>
+        <property name="stemSource" type="string">
+            <column length="17" name="stemSource" not-null="true"/>
+        </property>
+        <property name="soakingStemChemical" type="string">
+            <column length="14" name="soakingStemChemical" not-null="true">
+                <comment>???????????????????????????????????????????</comment>
+            </column>
+        </property>
+        <property name="numTillage" type="string">
+            <column length="2" name="numTillage" not-null="true">
+                <comment>?????????????????????????</comment>
+            </column>
+        </property>
+        <property name="soilAmendments" type="string">
+            <column length="15" name="soilAmendments" not-null="true">
+                <comment>??????????????????????</comment>
+            </column>
+        </property>
+        <property name="soilAmendmentsOther" type="string">
+            <column length="50" name="soilAmendmentsOther"/>
+        </property>
+        <property name="fertilizerDate1" type="date">
+            <column length="10" name="fertilizerDate1"/>
+        </property>
+        <property name="fertilizerFormular1" type="string">
+            <column length="20" name="fertilizerFormular1"/>
+        </property>
+        <property name="fertilizerDate2" type="date">
+            <column length="10" name="fertilizerDate2"/>
+        </property>
+        <property name="fertilizerFormular2" type="string">
+            <column length="20" name="fertilizerFormular2"/>
+        </property>
+        <property name="fertilizerDate3" type="date">
+            <column length="10" name="fertilizerDate3"/>
+        </property>
+        <property name="fertilizerFormular3" type="string">
+            <column length="20" name="fertilizerFormular3"/>
+        </property>
+        <property name="diseaseManagement" type="string">
+            <column length="11" name="diseaseManagement"/>
+        </property>
+        <property name="pestManagement" type="string">
+            <column length="11" name="pestManagement"/>
+        </property>
+        <property name="weedingMonth1" type="int">
+            <column name="weedingMonth1" not-null="true">
+                <comment>????????????????1</comment>
+            </column>
+        </property>
+        <property name="weedingChemicalOther1" type="string">
+            <column length="30" name="weedingChemicalOther1"/>
+        </property>
+        <property name="weedingMonth2" type="java.lang.Integer">
+            <column name="weedingMonth2"/>
+        </property>
+        <property name="weedingChemicalOther2" type="string">
+            <column length="30" name="weedingChemicalOther2"/>
+        </property>
+        <property name="weedingMonth3" type="java.lang.Integer">
+            <column name="weedingMonth3"/>
+        </property>
+        <property name="weedingChemicalOther3" type="string">
+            <column length="30" name="weedingChemicalOther3"/>
+        </property>
+        <property name="note" type="string">
+            <column length="65535" name="note" not-null="true"/>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column length="19" name="createDate" not-null="true"/>
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column length="19" name="lastUpdateDate"/>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="plantingcassavavarieties" table="plantingcassavavariety">
+            <key>
+                <column name="plantingID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Plantingcassavavariety"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="surveys" table="survey">
+            <key>
+                <column name="plantingID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Survey"/>
+        </set>
+         -->
+         <bag fetch="select" inverse="true" lazy="true" name="plantingcassavavarieties" table="plantingcassavavariety">
+            <key>
+                <column name="plantingID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.PlantingCassavaVariety"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="surveys" table="survey">
+            <key>
+                <column name="plantingID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Survey"/>
+        </bag>
+    </class>
+</hibernate-mapping>

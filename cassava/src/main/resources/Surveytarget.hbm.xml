@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.SurveyTarget" optimistic-lock="none" table="surveytarget">
+        <id name="surveyTargetId" type="java.lang.Integer">
+            <column name="surveyTargetID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Survey" fetch="select" name="survey">
+            <column name="surveyID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.TargetOfSurvey" fetch="select" name="targetofsurvey">
+            <column name="targetOfSurveyID" not-null="true"/>
+        </many-to-one>
+        <property name="avgDamageLevel" type="java.lang.Float">
+            <column name="avgDamageLevel" precision="12" scale="0"/>
+        </property>
+        <property name="percentDamage" type="java.lang.Float">
+            <column name="percentDamage" precision="12" scale="0"/>
+        </property>
+        <property name="status" type="string">
+            <column length="8" name="status" not-null="true"/>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="surveytargetpoints" table="surveytargetpoint">
+            <key>
+                <column name="surveyTargetID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Surveytargetpoint"/>
+        </set>
+         -->
+         <bag fetch="select" inverse="true" lazy="true" name="surveytargetpoints" table="surveytargetpoint">
+            <key>
+                <column name="surveyTargetID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.SurveyTargetPoint"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="requestDetails" table="requestdetail">
+            <key>
+                <column name="surveyTargetID"/>
+            </key>
+            <one-to-many class="org.cassava.model.RequestDetail"/>
+        </bag>
+    </class>
+</hibernate-mapping>

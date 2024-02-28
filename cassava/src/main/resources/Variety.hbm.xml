@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Variety" optimistic-lock="none" table="variety">
+        <id name="varietyId" type="java.lang.Integer">
+            <column name="varietyID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Plant" fetch="select" name="plant">
+            <column name="plantID" not-null="true"/>
+        </many-to-one>
+        <property name="name" type="string">
+            <column length="30" name="name" not-null="true"/>
+        </property>
+        <property name="trichome" type="string">
+            <column length="20" name="trichome"/>
+        </property>
+        <property name="apicalLeavesColor" type="string">
+            <column length="30" name="apicalLeavesColor">
+                <comment>?????????</comment>
+            </column>
+        </property>
+        <property name="youngLeavesColor" type="string">
+            <column length="30" name="youngLeavesColor">
+                <comment>????????</comment>
+            </column>
+        </property>
+        <property name="petioleColor" type="string">
+            <column length="30" name="petioleColor">
+                <comment>????????</comment>
+            </column>
+        </property>
+        <property name="centralLeafletShape" type="string">
+            <column length="30" name="centralLeafletShape">
+                <comment>???????????????</comment>
+            </column>
+        </property>
+        <property name="branchingHabit" type="string">
+            <column length="20" name="branchingHabit">
+                <comment>??????????</comment>
+            </column>
+        </property>
+        <property name="heightToFirstBranching" type="string">
+            <column length="20" name="heightToFirstBranching">
+                <comment>???????????????????????(??.)</comment>
+            </column>
+        </property>
+        <property name="plantHeight" type="string">
+            <column length="20" name="plantHeight">
+                <comment>???????????????(??.)</comment>
+            </column>
+        </property>
+        <property name="stemColor" type="string">
+            <column length="30" name="stemColor">
+                <comment>???????</comment>
+            </column>
+        </property>
+        <property name="starchContentRainySeason" type="string">
+            <column length="20" name="starchContentRainySeason">
+                <comment>????????????????????</comment>
+            </column>
+        </property>
+        <property name="starchContentDrySeason" type="string">
+            <column length="20" name="starchContentDrySeason">
+                <comment>??????????????????????</comment>
+            </column>
+        </property>
+        <property name="rootYield" type="java.lang.Float">
+            <column name="rootYield" precision="12" scale="0">
+                <comment>??????(??.)</comment>
+            </column>
+        </property>
+        <property name="mainCharacter" type="string">
+            <column name="mainCharacter">
+                <comment>??????????</comment>
+            </column>
+        </property>
+        <property name="limitationNote" type="string">
+            <column name="limitationNote">
+                <comment>????????</comment>
+            </column>
+        </property>
+        <property name="source" type="string">
+            <column name="source">
+                <comment>??????????</comment>
+            </column>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="plantingcassavavarieties" table="plantingcassavavariety">
+            <key>
+                <column name="varietyID" not-null="true" unique="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Plantingcassavavariety"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="imgvarieties" table="imgvariety">
+            <key>
+                <column name="varietyID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Imgvariety"/>
+        </set>
+         -->
+        <bag fetch="select" inverse="true" lazy="true" name="plantingcassavavarieties" table="plantingcassavavariety">
+            <key>
+                <column name="varietyID" not-null="true" unique="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.PlantingCassavaVariety"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="imgvarieties" table="imgvariety">
+            <key>
+                <column name="varietyID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.ImgVariety"/>
+        </bag>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.PermissionFile" optimistic-lock="none" table="permissionfile">
+        <id name="permissionFileId" type="java.lang.Integer">
+            <column name="permissionFileID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Permission" fetch="select" name="permission">
+            <column name="permissionID" not-null="true"/>
+        </many-to-one>
+        <property name="filePath" type="string">
+            <column length="150" name="filePath" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

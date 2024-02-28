@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.Disease" optimistic-lock="none" table="disease">
+        <id name="diseaseId" type="int">
+            <column name="diseaseID"/>
+            <generator class="foreign">
+                <param name="property">targetofsurvey</param>
+            </generator>
+        </id>
+        <many-to-one class="org.cassava.model.Plant" fetch="select" name="plant">
+            <column name="plantID" not-null="true"/>
+        </many-to-one>
+        <one-to-one class="org.cassava.model.TargetOfSurvey" constrained="true" name="targetofsurvey"/>
+        <property name="code" type="string">
+            <column length="10" name="code"/>
+        </property>
+        <property name="symptom" type="string">
+            <column length="150" name="symptom"/>
+        </property>
+        <property name="controlDisease" type="string">
+            <column length="65535" name="controlDisease"/>
+        </property>
+        <property name="controlPest" type="string">
+            <column length="65535" name="controlPest"/>
+        </property>
+        <property name="source" type="string">
+            <column name="source"/>
+        </property>
+        <!--  <set fetch="select" inverse="false" lazy="true" name="pathogens" table="diseasepathogen">
+            <key>
+                <column name="diseaseID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.Pathogen">
+                <column name="pathogenID" not-null="true"/>
+            </many-to-many>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="permissiondiseases" table="permissiondisease">
+            <key>
+                <column name="diseaaseID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Permissiondisease"/>
+        </set>
+        <set fetch="select" inverse="false" lazy="true" name="pests" table="diseasepest">
+            <key>
+                <column name="diseaseID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.Pest">
+                <column name="pestID" not-null="true"/>
+            </many-to-many>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="imgdiseases" table="imgdisease">
+            <key>
+                <column name="diseaseID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Imgdisease"/>
+        </set>-->
+        <bag fetch="select" inverse="false" lazy="true" name="pathogens" table="diseasepathogen">
+            <key>
+                <column name="diseaseID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.Pathogen">
+                <column name="pathogenID" not-null="true"/>
+            </many-to-many>
+        </bag>
+        <bag fetch="select" inverse="false" lazy="true" name="pests" table="diseasepest">
+            <key>
+                <column name="diseaseID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.Pest">
+                <column name="pestID" not-null="true"/>
+            </many-to-many>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="imgdiseases" table="imgdisease">
+            <key>
+                <column name="diseaseID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.ImgDisease"/>
+        </bag>
+    </class>
+</hibernate-mapping>

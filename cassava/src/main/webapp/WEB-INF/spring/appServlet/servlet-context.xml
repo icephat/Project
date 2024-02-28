@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-2.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+		<mvc:annotation-driven>
+	   <mvc:argument-resolvers>
+      	 <bean class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
+	  </mvc:argument-resolvers>
+	  <!--  <mvc:message-converters register-defaults="false">
+  		<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		 	<property name="objectMapper">
+	               <bean class="syngenta.der.utils.hibernate.HibernateAwareObjectMapper" />
+	        </property>
+		</bean>	
+      </mvc:message-converters>
+      -->
+	</mvc:annotation-driven>
+	
+
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<mvc:resources mapping="/resources/**" location="/resources/ , classpath:/public/" />
+	
+	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+	
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"> 
+    		<property name="maxUploadSize" value="100000000" /> 
+			<property name="defaultEncoding" value="utf-8"/>
+	</bean>
+
+	<context:component-scan base-package="org.cassava" />
+
+</beans>

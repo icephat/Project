@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.User" optimistic-lock="none" table="user">
+        <id name="userId" type="java.lang.Integer">
+            <column name="userID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="username" type="string">
+            <column length="35" name="username" unique="true"/>
+        </property>
+        <property name="title" type="string">
+            <column length="10" name="title"/>
+        </property>
+        <property name="firstName" type="string">
+            <column length="20" name="firstName" not-null="true"/>
+        </property>
+        <property name="lastName" type="string">
+            <column length="30" name="lastName" not-null="true"/>
+        </property>
+        <property name="phoneNo" type="string">
+            <column length="20" name="phoneNo" not-null="true"/>
+        </property>
+        <property name="userStatus" type="string">
+            <column length="8" name="userStatus" not-null="true"/>
+        </property>
+        <property name="latestLogin" type="timestamp">
+            <column length="19" name="latestLogin"/>
+        </property>
+        <property name="requestInfoStatus" type="string">
+            <column length="7" name="requestInfoStatus" not-null="true"/>
+        </property>
+        <bag fetch="select" inverse="true" lazy="true" name="plantingsForCreateBy" table="planting">
+            <key>
+                <column name="createBy" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="surveysForLastUpdateBy" table="survey">
+            <key>
+                <column name="lastUpdateBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.Survey"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="surveysForCreateBy" table="survey">
+            <key>
+                <column name="createBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.Survey"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="messages" table="message">
+            <key>
+                <column name="sender"/>
+            </key>
+            <one-to-many class="org.cassava.model.Message"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="fieldsForLastUpdateBy" table="field">
+            <key>
+                <column name="lastUpdateBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.Field"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="fieldsForCreateBy" table="field">
+            <key>
+                <column name="createBy" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Field"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="userinfields" table="userinfield">
+            <key>
+                <column name="userID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.UserInField"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="imgsurveytargetpointsForApproveBy" table="imgsurveytargetpoint">
+            <key>
+                <column name="approveBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.ImgSurveyTargetPoint"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="messagereceivers" table="messagereceiver">
+            <key>
+                <column name="receiverID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Messagereceiver"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="imgsurveytargetpointsForUploadBy" table="imgsurveytargetpoint">
+            <key>
+                <column name="uploadBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.ImgSurveyTargetPoint"/>
+        </bag>
+        <one-to-one class="org.cassava.model.Farmer" name="farmer"/>
+        <bag fetch="select" inverse="true" lazy="true" name="imgherbicidedamagesForUploadBy" table="imgherbicidedamage">
+            <key>
+                <column name="uploadBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.ImgHerbicideDamage"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="surveysForImgOwner" table="survey">
+            <key>
+                <column name="imgOwner"/>
+            </key>
+            <one-to-many class="org.cassava.model.Survey"/>
+        </bag>
+        <bag fetch="select" inverse="false" lazy="true" name="roles" table="userrole">
+            <key>
+                <column name="userID" not-null="true"/>
+            </key>
+            <many-to-many entity-name="org.cassava.model.Role">
+                <column name="roleID" not-null="true"/>
+            </many-to-many>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="imgherbicidedamagesForApproveBy" table="imgherbicidedamage">
+            <key>
+                <column name="approveBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.ImgHerbicideDamage"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="plantingsForLastUpdateBy" table="planting">
+            <key>
+                <column name="lastUpdateBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.Planting"/>
+        </bag>
+        <bag fetch="select" inverse="true" lazy="true" name="registercodes" table="registercode">
+            <key>
+                <column name="createBy"/>
+            </key>
+            <one-to-many class="org.cassava.model.RegisterCode"/>
+        </bag>
+        <one-to-one class="org.cassava.model.Staff" name="staff"/>
+        <bag fetch="select" inverse="true" lazy="true" name="surveysForImgPhotographer" table="survey">
+            <key>
+                <column name="imgPhotographer"/>
+            </key>
+            <one-to-many class="org.cassava.model.Survey"/>
+        </bag>
+    </class>
+</hibernate-mapping>

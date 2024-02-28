@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.RequestDetail" optimistic-lock="none" table="requestdetail">
+        <id name="requestDetailId" type="java.lang.Integer">
+            <column name="requestDetailID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.Request" fetch="select" name="request">
+            <column name="requestID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.Survey" fetch="select" name="survey">
+            <column name="surveyID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.cassava.model.SurveyTarget" fetch="select" name="surveyTarget">
+            <column name="surveyTargetID"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

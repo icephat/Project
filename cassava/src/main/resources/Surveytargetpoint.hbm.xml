@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Nov 30, 2022, 10:33:28 PM by Hibernate Tools 5.5.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="cassava" name="org.cassava.model.SurveyTargetPoint" optimistic-lock="none" table="surveytargetpoint">
+        <id name="surveyTargetPointId" type="java.lang.Integer">
+            <column name="surveyTargetPointID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.cassava.model.SurveyTarget" fetch="select" name="surveytarget">
+            <column name="surveyTargetID" not-null="true"/>
+        </many-to-one>
+        <property name="pointNumber" type="int">
+            <column name="pointNumber" not-null="true"/>
+        </property>
+        <property name="itemNumber" type="int">
+            <column name="itemNumber" not-null="true"/>
+        </property>
+        <property name="value" type="int">
+            <column name="value" not-null="true"/>
+        </property>
+        <!-- 
+        <set fetch="select" inverse="true" lazy="true" name="imgsurveytargetpoints" table="imgsurveytargetpoint">
+            <key>
+                <column name="surveyTargetPointID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.Imgsurveytargetpoint"/>
+        </set>
+         -->
+         <bag fetch="select" inverse="true" lazy="true" name="imgsurveytargetpoints" table="imgsurveytargetpoint">
+            <key>
+                <column name="surveyTargetPointID" not-null="true"/>
+            </key>
+            <one-to-many class="org.cassava.model.ImgSurveyTargetPoint"/>
+        </bag>
+    </class>
+</hibernate-mapping>
