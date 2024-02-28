@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 10, 2023, 12:04:42 AM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="sharity" name="se.springboot.sharitytest.model.JoinActivity" optimistic-lock="none" table="joinactivity">
+        <id name="joinActivityId" type="java.lang.Integer">
+            <column name="joinActivityId"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="se.springboot.sharitytest.model.Activity" fetch="select" name="activity">
+            <column name="activityId" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="se.springboot.sharitytest.model.ConditionActivity" fetch="select" name="conditionActivity">
+            <column name="conditionId"/>
+        </many-to-one>
+        <many-to-one class="se.springboot.sharitytest.model.User" fetch="select" name="user">
+            <column name="userId" not-null="true"/>
+        </many-to-one>
+        <property name="status" type="string">
+            <column length="8" name="status" not-null="true"/>
+        </property>
+        <property name="score" type="java.lang.Integer">
+            <column name="score"/>
+        </property>
+        <property name="detailRequest" type="string">
+            <column length="65535" name="detailRequest"/>
+        </property>
+        <property name="comment" type="string">
+            <column length="65535" name="comment"/>
+        </property>
+        <property name="dateRequest" type="date">
+            <column length="10" name="dateRequest"/>
+        </property>
+        <property name="dateApprove" type="date">
+            <column length="10" name="dateApprove"/>
+        </property>
+    </class>
+</hibernate-mapping>
