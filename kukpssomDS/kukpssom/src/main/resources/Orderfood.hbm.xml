@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 4, 2023, 9:05:58 PM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="kukpssom"
+		name="ku.kps.ds.som.kukpssom.model.OrderFood"
+		optimistic-lock="none" table="orderfood">
+		<id name="orderId" type="java.lang.Integer">
+			<column name="orderId" />
+			<generator class="identity" />
+		</id>
+		<many-to-one class="ku.kps.ds.som.kukpssom.model.User"
+			fetch="select" name="user">
+			<column name="userId" not-null="true" />
+		</many-to-one>
+		<property name="storeId" type="int">
+			<column name="storeId" not-null="true" />
+		</property>
+		<property name="orderCode" type="string">
+			<column length="50" name="orderCode" not-null="true" />
+		</property>
+		<property name="status" type="string">
+			<column length="150" name="status" not-null="true" />
+		</property>
+		<property name="date" type="date">
+			<column length="10" name="date" not-null="true" />
+		</property>
+		<property name="time" type="time">
+			<column length="8" name="time" />
+		</property>
+		<property name="price" type="int">
+			<column name="price" not-null="true" />
+		</property>
+		<property name="timeCount" type="int">
+			<column name="timeCount" not-null="true" />
+		</property>
+		<property name="note" type="string">
+			<column length="150" name="note" not-null="true" />
+		</property>
+		<bag fetch="select" inverse="true" lazy="true" name="menuInOrders"
+			table="menuinorder">
+			<key>
+				<column name="orderId" not-null="true" />
+			</key>
+			<one-to-many
+				class="ku.kps.ds.som.kukpssom.model.MenuInOrder" />
+		</bag>
+		<bag fetch="select" inverse="true" lazy="true" name="queueOrders"
+			table="queueorder">
+			<key>
+				<column name="orderId" not-null="true" />
+			</key>
+			<one-to-many
+				class="ku.kps.ds.som.kukpssom.model.QueueOrder" />
+		</bag>
+	</class>
+</hibernate-mapping>

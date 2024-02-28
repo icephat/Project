@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Sep 29, 2023, 10:57:06 PM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="kukpssom" name="ku.kps.ds.som.kukpssom.model.QueueOrder" optimistic-lock="none" table="queueorder">
+        <id name="queueOrderId" type="java.lang.Integer">
+            <column name="queueOrderId"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="ku.kps.ds.som.kukpssom.model.OrderFood" fetch="select" name="orderFood">
+            <column name="orderId" not-null="true"/>
+        </many-to-one>
+        <property name="orderNumber" type="int">
+            <column name="orderNumber" not-null="true"/>
+        </property>
+        <property name="time" type="time">
+            <column length="8" name="time"/>
+        </property>
+        <property name="timeCount" type="int">
+            <column name="timeCount" not-null="true"/>
+        </property>
+        <property name="orderCode" type="string">
+            <column length="50" name="orderCode" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

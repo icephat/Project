@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 28, 2023, 10:09:23 PM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="kukpssom"
+		name="ku.kps.ds.som.kukpssom.model.Store" optimistic-lock="none"
+		table="store">
+		<id name="storeId" type="java.lang.Integer">
+			<column name="storeId" />
+			<generator class="identity" />
+		</id>
+		<many-to-one class="ku.kps.ds.som.kukpssom.model.User"
+			fetch="select" name="user">
+			<column name="userId" not-null="true" />
+		</many-to-one>
+		<property name="name" type="string">
+			<column length="100" name="name" not-null="true" />
+		</property>
+		<property name="timeOpen" type="string">
+			<column length="10" name="timeOpen" not-null="true" />
+		</property>
+		<property name="timeClose" type="string">
+			<column length="10" name="timeClose" not-null="true" />
+		</property>
+		<property name="status" type="string">
+			<column length="5" name="status" not-null="true" />
+		</property>
+		<property name="type" type="string">
+			<column length="100" name="type" not-null="true" />
+		</property>
+		<bag fetch="select" inverse="true" lazy="true" name="menus"
+			table="menu">
+			<key>
+				<column name="storeId" not-null="true" />
+			</key>
+			<one-to-many class="ku.kps.ds.som.kukpssom.model.Menu" />
+		</bag>
+	</class>
+</hibernate-mapping>

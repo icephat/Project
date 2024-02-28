@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Sep 29, 2023, 11:31:16 PM by Hibernate Tools 5.6.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="kukpssom" name="ku.kps.ds.som.kukpssom.model.User"
+		optimistic-lock="none" table="user">
+		<id name="userId" type="java.lang.Integer">
+			<column name="userId" />
+			<generator class="identity" />
+		</id>
+		<property name="username" type="string">
+			<column length="100" name="username" not-null="true" />
+		</property>
+		<property name="password" type="string">
+			<column length="100" name="password" not-null="true" />
+		</property>
+		<property name="name" type="string">
+			<column length="100" name="name" not-null="true" />
+		</property>
+		<property name="suename" type="string">
+			<column length="100" name="suename" not-null="true" />
+		</property>
+		<property name="role" type="string">
+			<column length="9" name="role" not-null="true" />
+		</property>
+		<bag fetch="select" inverse="true" lazy="true" name="stores"
+			table="store">
+			<key>
+				<column name="userId" not-null="true" />
+			</key>
+			<one-to-many class="ku.kps.ds.som.kukpssom.model.Store" />
+		</bag>
+		<bag fetch="select" inverse="true" lazy="true" name="orderFoods"
+			table="orderfood">
+			<key>
+				<column name="userId" not-null="true" />
+			</key>
+			<one-to-many class="ku.kps.ds.som.kukpssom.model.OrderFood" />
+		</bag>
+	</class>
+</hibernate-mapping>
